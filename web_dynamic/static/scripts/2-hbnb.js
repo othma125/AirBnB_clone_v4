@@ -26,7 +26,7 @@ $(document).ready(() => {
       $('.amenities h4').html('&nbsp;');
     }
   });
-  $.get('http://0.0.0.0:5001/api/v1/status/', (data) => {
+  $.get('http://localhost:5001/api/v1/status/', (data) => {
     // If the status is "OK", add the "available" class to the div#api_status
     if (data.status === 'OK') {
       $('div#api_status').addClass('available');
