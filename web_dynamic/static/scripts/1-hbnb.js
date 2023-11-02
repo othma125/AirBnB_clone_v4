@@ -1,30 +1,28 @@
-// Script that listens for changes on each INPUT checkbox tag
+/* global $ */
 $(document).ready(() => {
   let clicked = [];
-  let temp = [];
-  let text = [];
-  $(':checkbox').on('click', () => {
-    console.log();
-    if (clicked.indexOf(this['dataset']['id']) === -1) {
-      clicked.push(this['dataset']['id']);
+
+  $(':checkbox').on('click', function () {
+    // Use 'function()' instead of '() =>' to properly bind 'this'
+    const currentId = $(this).data('id'); // Correctly retrieve 'data-id' attribute
+
+    if (clicked.indexOf(currentId) === -1) {
+      clicked.push(currentId);
     } else {
-      for (let item of clicked) {
-        if (item !== this['dataset']['id']) {
-          temp.push(item);
-        }
-      }
-      clicked = temp;
-      temp = [];
+      clicked = clicked.filter((item) => item !== currentId);
     }
-    for (let item of $('.popover li input')) {
-      if (clicked.indexOf(item['dataset']['id']) !== -1) {
-        console.log('yay');
-        text.push(item['dataset']['name']);
+
+    // Construct the list of names based on the 'clicked' array
+    const text = [];
+    $('.popover li input').each(function () {
+      if (clicked.indexOf($(this).data('id')) !== -1) {
+        text.push($(this).data('name'));
       }
-    }
-    $('.amenities h4').text(text.join(', '));
-    text = [];
-    if (clicked.length === 0) {
+    });
+
+    if (text.length > 0) {
+      $('.amenities h4').text(text.join(', '));
+    } else {
       $('.amenities h4').html('&nbsp;');
     }
   });
