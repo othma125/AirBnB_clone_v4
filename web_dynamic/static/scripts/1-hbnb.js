@@ -1,13 +1,31 @@
 // Script that listens for changes on each INPUT checkbox tag
 $(document).ready(() => {
-  const amenities = {};
-  $('input[type="checkbox"]').change(() => {
-    if ($(this).is(':checked')) {
-      amenities[$(this).attr('data-id')] = $(this).attr('data-name');
+  let clicked = [];
+  let temp = [];
+  let text = [];
+  $(':checkbox').on('click', () => {
+    console.log();
+    if (clicked.indexOf(this['dataset']['id']) === -1) {
+      clicked.push(this['dataset']['id']);
     } else {
-      delete amenities[$(this).attr('data-id')];
+      for (let item of clicked) {
+        if (item !== this['dataset']['id']) {
+          temp.push(item);
+        }
+      }
+      clicked = temp;
+      temp = [];
     }
-    const amenitiesList = Object.values(amenities).join(', ');
-    $('.amenities h4').text(amenitiesList);
+    for (let item of $('.popover li input')) {
+      if (clicked.indexOf(item['dataset']['id']) !== -1) {
+        console.log('yay');
+        text.push(item['dataset']['name']);
+      }
+    }
+    $('.amenities h4').text(text.join(', '));
+    text = [];
+    if (clicked.length === 0) {
+      $('.amenities h4').html('&nbsp;');
+    }
   });
 });
