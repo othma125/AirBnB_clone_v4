@@ -9,3 +9,8 @@ header .logo {
     left: 20px;
     height: 100%;
 }
+
+/* New class with background color #ff545f */
+header .new-class {
+    background-color: #ff545f;
+}
