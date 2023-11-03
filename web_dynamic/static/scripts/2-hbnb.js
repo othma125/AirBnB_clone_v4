@@ -10,9 +10,8 @@ $(document).ready(() => {
     }
   });
   let clicked = [];
-  $(':checkbox').on('click', () => {
+  $(':checkbox').on('click', function () {
     const currentId = $(this).data('id'); // Correctly retrieve 'data-id' attribute
-    const currentName = $(this).data('name'); // Correctly retrieve 'data-name' attribute
     if (clicked.indexOf(currentId) === -1) {
       clicked.push(currentId);
     } else {
@@ -20,9 +19,9 @@ $(document).ready(() => {
     }
     // Construct the list of names based on the 'clicked' array
     const text = [];
-    $('.popover li input').each(() => {
+    $('.popover li input').each(function () {
       if (clicked.indexOf($(this).data('id')) !== -1) {
-        text.push(currentName);
+        text.push($(this).data('name'));
       }
     });
     if (text.length > 0) {
