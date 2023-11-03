@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Starts a Flash Web Application C is FUN"""
 from flask import Flask
+
 app = Flask(__name__)
 
 
@@ -20,6 +21,7 @@ def hbnb():
 def c_is_fun(text):
     """ Prints a Message when /c is called """
     return "C " + text.replace('_', ' ')
+
 
 if __name__ == "__main__":
     """ Main Function """

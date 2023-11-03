@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Starts a Flash Web Application Python is Cool"""
 from flask import Flask
+
 app = Flask(__name__)
 
 
@@ -27,6 +28,7 @@ def c_is_fun(text):
 def python_is_cool(text='is_cool'):
     """ Prints a Message when /python is called """
     return "Python " + text.replace('_', ' ')
+
 
 if __name__ == "__main__":
     """ Main Function """
