@@ -6,7 +6,6 @@ $(document).ready(() => {
     contentType: "application/json",
     data: "{}",
     success: (data) => {
-      // Loop through the result of the request and create an article tag representing a Place in the section.places
       for (const place of data) {
         const article = $("<article></article>").addClass("place");
         const titleBox = $("<div></div>").addClass("title_box");
